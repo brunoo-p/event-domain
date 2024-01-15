@@ -1,6 +1,8 @@
 import EventDispatcher from '../dispatcher';
+import { EventName } from '../event/enum/eventName';
 import SubmitEvent from '../event/submit';
 import SubmitHandler from '../handler/submit-handler';
+import { ISubmitDataEvent } from '../interface/submitDataEvent';
 
 /* eslint-disable dot-notation */
 describe('Events Domain', () => {
@@ -11,10 +13,10 @@ describe('Events Domain', () => {
     const eventDispatcher = new EventDispatcher();
     const eventHandler = new SubmitHandler();
 
-    eventDispatcher.register('SubmitEvent', eventHandler);
+    eventDispatcher.register(EventName.SubmitEvent, eventHandler);
 
-    expect(eventDispatcher.getEventHandlers['SubmitEvent']).toBeDefined();
-    expect(eventDispatcher.getEventHandlers['SubmitEvent'].length).toEqual(1);
+    expect(eventDispatcher.getEventHandlers[EventName.SubmitEvent]).toBeDefined();
+    expect(eventDispatcher.getEventHandlers[EventName.SubmitEvent].length).toEqual(1);
   
   });
 
@@ -22,11 +24,11 @@ describe('Events Domain', () => {
 
     const eventDispatcher = new EventDispatcher();
     const eventHandler = new SubmitHandler();
-    const spyEventHandler = jest.spyOn(eventHandler, 'handle');
-    eventDispatcher.register('SubmitEvent', eventHandler);
-    const event = new SubmitEvent({
+    const spyEventHandler = jest.spyOn(eventHandler, "handle");
+    eventDispatcher.register(EventName.SubmitEvent, eventHandler);
+    const event = new SubmitEvent<ISubmitDataEvent>({
       name: 'John Doe',
-      email: 'johndow@email.com'
+      email: 'johndoe@email.com'
     });
 
     eventDispatcher.notify(event);

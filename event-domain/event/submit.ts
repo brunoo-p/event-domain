@@ -1,12 +1,12 @@
-import EventInterface from '../interface/event';
+import IEvent from '../interface/event';
 
-export default class SubmitEvent implements EventInterface {
+export default class SubmitEvent<T> implements IEvent<T> {
 
   dateTimeOcurred: Date;
 
-  eventData: any;
+  eventData: T;
 
-  constructor(eventData: any) {
+  constructor(eventData: T) {
   
     this.dateTimeOcurred = new Date();
     this.eventData = eventData;
