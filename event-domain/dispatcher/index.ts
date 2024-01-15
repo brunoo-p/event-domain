@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import IEventHandler from '../handler/interface';
 import IEventDispatcher from '../interface/dispatcher';
-import EventInterface from '../interface/event';
+import IEvent from '../interface/event';
 
 export default class EventDispatcher implements IEventDispatcher {
 
@@ -21,7 +21,7 @@ export default class EventDispatcher implements IEventDispatcher {
 
   }
   
-  notify(event: EventInterface): void {
+  notify(event: IEvent): void {
         
     const eventName = event.constructor.name;
     if (this.eventHandlers[eventName]) this.eventHandlers[eventName].forEach((handler) => handler.handle(event));

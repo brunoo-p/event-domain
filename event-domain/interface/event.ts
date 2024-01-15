@@ -1,6 +1,6 @@
-export default interface EventInterface {
+export default interface IEvent<T=any> {
 
   dateTimeOcurred: Date;
-  eventData: any;
+  eventData: T;
 
 };
